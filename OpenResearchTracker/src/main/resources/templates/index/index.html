@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: html_head">
+</head>
+
+<body>
+<script th:inline="javascript" sec:authorize="hasAnyRole('ROLE_Admin', 'ROLE_Super-Admin')" >
+	var isAdmin = true;	
+</script>
+<script th:inline="javascript" sec:authorize="hasAnyRole('ROLE_User')" >
+	var isAdmin = false;	
+</script>
+<script th:inline="javascript" th:if="${userview == true}" >
+	var userview = true;	
+</script>
+<script th:inline="javascript" th:unless="${userview == true}" >
+	var userview = false;	
+</script>
+
+	<header th:include="fragments/header :: menu"> </header>
+	<div class="container" sec:authorize="hasAnyRole('ROLE_Admin', 'ROLE_Super-Admin')" th:if="${userview != true}">
+		<h2>Search Publications</h2>
+		
+		<form th:action="@{/exportPublications}" method="GET">				
+		
+		<div class="border border-secondary px-3 py-3 d-grid gap-2">
+			<div class="row">
+				<div class="col">
+					<label>Output Title</label> <input type="text"
+						class="column_filter form-control my-2" id="titleFilter"
+						th:name="title" th:value="${title}" placeholder="Title">
+				</div>
+				
+				<div class="col">
+				<label>Publication Status</label> <select
+						class="column_filter form-control my-2" id="pureStatusFilter"
+						th:name="pureStatus">
+						<option value="">--Please Select--</option>
+						<option value="Accepted/In press">Accepted/In press</option>
+						<option value="E-pub ahead of print">E-pub ahead of print</option>
+						<option value="Published">Published</option>
+						<option value="Submitted">Submitted</option>
+					</select>
+				</div>
+					
+			</div>
+
+			<div class="row">									
+				<div class="col">
+					<label>REF Compliance Status</label> <select
+						class="column_filter form-control my-2" id="complianceStatusFilter"
+						th:name="complianceStatus">
+						<option value="">--Please Select--</option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+					</select>
+				</div>
+				<div class="col">
+					<label>OA Route</label> 
+					<select class="column_filter form-control my-2" id="OARouteFilter" 
+					th:name="oa_route">
+						<option value="">--Please Select--</option>
+						<option value="Gold via APC">Gold via APC</option>
+						<option value="Gold via Diamond">Gold via Diamond</option>
+						<option value="Gold via TA">Gold via TA</option>
+						<option value="OA via rights retention">OA via rights retention</option>
+						<option value="OA via repository after an embargo">OA via repository after an embargo</option>
+						<option value="OA facilitated via another organisation">OA facilitated via another organisation</option>
+						<option value="Not OA">Not OA</option>					
+					</select>
+				</div>
+
+			</div>			
+
+			<div class="row">
+				<div class="col">
+					<label>Organisation</label> <select
+						class="column_filter form-control my-2" id="organisationFilter"
+						th:name="organisation">
+						<option value="" selected="selected">--Please Select--</option>
+						<optgroup value="2" label="Level 2">
+							<option>Professional Services</option>						
+							<option>Faculty of Biology, Medicine and
+								Health</option>
+							<option>Faculty of Humanities</option>
+							<option>Faculty of Science and Engineering</option>
+						</optgroup>
+						<optgroup value="3" label="Level 3">
+							<option>Alliance Manchester Business
+								School</option>
+							<option>Cancer Research UK Manchester
+								Institute</option>
+							<option>School of Arts, Languages and
+								Cultures</option>
+							<option>School of Biological Sciences</option>
+							<option>School of Chemistry</option>
+							<option>School of Computer Science</option>
+							<option>School of Earth and Environmental
+								Sciences</option>
+							<option>School of Environment, Education
+								and Development</option>
+							<option>School of Health Sciences</option>
+							<option>School of Law</option>
+							<option>School of Materials</option>
+							<option>School of Mathematics</option>
+							<option>School of Medical Sciences</option>
+							<option>School of Social Sciences</option>
+						</optgroup>
+					</select>
+				</div>
+			</div>
+			
+			<div class="row my-3">	
+				<h5><strong>Containing any of the following funders</strong></h5>								
+				<div class="col">
+					<label>Wellcome</label> <select
+						class="column_filter form-control my-2" id="WellcomeFilter"
+						th:name="Wellcome">
+						<option value="">--Please Select--</option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+						<option value="N/A">N/A</option>		
+					</select>
+				</div>
+				<div class="col">
+					<label>CRUK</label> <select
+						class="column_filter form-control my-2" id="CRUKFilter"
+						th:name="CRUK">
+						<option value="">--Please Select--</option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+						<option value="N/A">N/A</option>
+					</select>
+				</div>
+				<div class="col">
+					<label>BHF</label> <select
+						class="column_filter form-control my-2" id="BHFFilter"
+						th:name="BHF">
+						<option value="">--Please Select--</option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+						<option value="N/A">N/A</option>
+					</select>
+				</div>
+				<div class="col">				
+					<label>NIHR</label> <select
+						class="column_filter form-control my-2" id="NIHRFilter"
+						th:name="NIHR">
+						<option value="">--Please Select--</option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+						<option value="N/A">N/A</option>
+					</select>
+				</div>
+				<div class="col">
+					<label>ERC</label> <select
+						class="column_filter form-control my-2" id="ERCFilter"
+						th:name="ERC">
+						<option value="">--Please Select--</option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+						<option value="N/A">N/A</option>
+					</select>
+				</div>
+				<div class="col">
+					<label>UKRI</label> <select
+						class="column_filter form-control my-2" id="UKRIFilter"
+						th:name="UKRI">
+						<option value="">--Please Select--</option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+						<option value="N/A">N/A</option>
+					</select>
+				</div>
+
+			</div>
+			
+			<div class="row">
+				<div class="col d-flex justify-content-end mx-3">
+					<button type="submit" class="btn btn-primary mx-3 btnExport">
+							<i class="fa-solid fa-file-export"></i> Export Excel
+						</button>
+				    <button type="button" class="btn btn-primary btnReset">
+						<i class="fa-solid fa-rotate"></i> Reset
+					</button>
+				</div>					
+			</div>
+			
+		</div>
+		</form>
+	</div>
+			
+	<div class="listpublication container my-3">
+	<!-- Displays the table if the user has records -->
+	<table th:if="${(error == null and numPublications > 0) or isAdmin == true}" id="publicationTable" class="display my-2">
+        <thead>
+            <tr>
+                <th>Pure Id</th>
+                <th>Publication Status</th>
+                <th>Output Title</th>
+                <th>REF Compliance Status</th>
+                <th>Publisher</th>
+                <th>Publication Date</th>                
+                <th>OA Route</th>
+                <th>Status</th>               
+                <th>Accepted Date</th>
+                <th>Created Date</th>
+            </tr>
+        </thead>
+        <tbody th:if="${userview == true or #authorization.expression('hasRole(''ROLE_User'')')}">
+        	<tr th:each="pub : ${publications}">
+        		<td th:text="${pub.getPureId()}"></td>
+        		<td th:text="${pub.getPureStatus()}"></td>
+        		<td th:text="${pub.getTitle()}"></td>
+        		<td th:text="${pub.getComplianceStatus()}"></td>
+        		<td th:text="${pub.getPublisher()}"></td>
+        	    <td th:text="${#dates.format(pub.getPublicationDate(), 'dd-MM-yyyy')}"></td>
+        		<td th:text="${pub.getOARoute()}"></td>
+        		<td th:text="${pub.getStatus()}"></td>
+         		<td th:text="${#dates.format(pub.getAcceptedDate(), 'dd-MM-yyyy')}"></td>
+         		<td th:text="${#dates.format(pub.getOacpCreatedDate(), 'dd-MM-yyyy')}"></td>
+        	</tr>
+        </tbody>      
+    </table>
+	</div>
+	<!-- Displays a message to tell the user that they have no records -->
+	<div th:if="${noRecords}" class="alert alert-primary mx-5 text-center" role="alert">
+		  <span class = "text-center">
+		  You do not currently have any publications recorded in the Open Research Tracker.<br> 
+The Open Research Tracker displays information about the Open Access status of journal articles and conference proceedings
+accepted for publication from January 1st 2023, deposited via the Library’s <a href="https://www.library.manchester.ac.uk/services/research/open-research/access/gateway/">Open Access Gateway</a> or directly in Pure. 
+If you have any questions, please contact <a href="mailto:openresearch@manchester.ac.uk">openresearch@manchester.ac.uk</a> 
+		  
+			</span>
+	</div>
+	
+	<div th:if="${error != null && noRecords == null}" class="alert alert-danger mx-5 text-center" role="alert">
+		  <span class = "text-center" th:text="${error}"></span>
+	</div>
+	
+	<footer class="footer" th:include="fragments/footer :: footer"></footer>
+		
+</body>
+<script src="/js/index.js"></script>
+</html>

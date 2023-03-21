@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: html_head">
+</head>
+<body>
+<header th:include="fragments/header :: menu"></header>
+	
+<div class="container">
+	
+	<div class="row">
+	    <div class="col">
+			<h1>View Record</h1>
+	    </div>
+	    <div class="col d-flex justify-content-end my-2">
+			<button onclick="history.back();" class="btn btn-primary">
+				 <i class="fa-solid fa-circle-left"></i> Go Back</button>
+	    </div>
+	</div>
+	
+	<div class="card border-dark">
+		<div class="card-header">
+			 <nav>
+			  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+			    <button class="nav-link active" id="nav-details-tab" data-bs-toggle="tab" data-bs-target="#nav-details" type="button" role="tab" aria-controls="nav-details" aria-selected="true">
+					<i class="fa-solid fa-circle-info"></i> Record Details
+				</button>
+			    <button th:if="${isAdmin == null}"
+			    class="nav-link" id="nav-scholarcy-tab" data-bs-toggle="tab" data-bs-target="#nav-scholarcy" type="button" role="tab" aria-controls="nav-scholarcy" aria-selected="false">
+						Article Insights
+				</button>
+			  </div>
+			</nav>
+		</div>
+		
+		<div class="card-body text-dark" th:if="${publication == null}">
+			<strong>Error</strong>
+			<p th:text="${error}" />
+		</div>
+		
+		<div class="card-body text-dark" th:object="${publication}" th:if="${publication != null}">
+										
+			<div class="tab-content" id="nav-tabContent">
+			
+		  		<div class="tab-pane fade show active" id="nav-details" role="tabpanel" aria-labelledby="nav-details-tab">
+					<div class="row">
+		
+						<div class="col-sm-5">
+						
+							<strong>Pure ID:</strong>
+							<p th:text="*{pureId} ?: '-'" />	
+								
+							<strong>Output Title:</strong>
+							<p th:text="*{title} ?: '-'" />	
+							
+							<strong>Journal:</strong>
+							<p th:text="*{journal} ?: '-'" />	
+																													
+						</div>
+						
+						 <div class="col-sm-4">
+						 
+						 	<strong>Publication Status:</strong>
+							<p th:text="*{pureStatus} ?: '-'" />
+							
+							<strong>Accepted Date:</strong>
+							<p th:text="*{#dates.format(AcceptedDate, 'dd/MM/yyyy')} ?: '-'"></p>
+															
+							<strong>Publisher Name:</strong>
+							<p th:text="*{publisher} ?: '-'" />
+							
+							<strong>Published Date:</strong>
+							<p th:text="*{#dates.format(publicationDate, 'dd/MM/yyyy')} ?: '-'"></p>
+						 
+																
+																																			
+						</div>
+						
+						<div class="col-sm-3">
+							<strong>REF Compliance Status:</strong>
+							<p th:text="*{complianceStatus} ?: '-'"></p>						
+							
+							<strong>OA Route:</strong>
+							<p th:text="*{OARoute} ?: '-'"></p>
+							
+							<strong>Status:</strong>
+							<p th:text="*{status} ?: '-'"></p>	
+
+							<strong>Created Date:</strong>
+							<p th:text="*{#dates.format(oacpCreatedDate, 'dd/MM/yyyy HH:mm')} ?: '-'"></p>
+							
+						</div> 
+					</div>
+					
+					<div class="row pl-3">
+					   <h5><strong>Funders List</strong></h5>
+					</div> 
+					      	 
+				   <div class="row">	
+			                
+			            <div class="col-sm-2 mb-3">
+							<b>UKRI</b><br/>
+							<p th:text="*{funderUKRI} ?: '-'"></p>
+						</div>
+					
+					<div class="col-sm-2 mb-3">
+						<b>Wellcome</b><br/>
+						<p th:text="*{funderWellcome} ?: '-'"></p>
+			
+					</div>
+					
+					<div class="col-sm-2 mb-3">
+						<b>CRUK</b><br/>
+						<p th:text="*{funderCRUK} ?: '-'"></p>
+			
+					</div>
+					
+					<div class="col-sm-2 mb-3">
+						<b>BHF</b><br/>	
+						<p th:text="*{funderBHF} ?: '-'"></p>
+			
+					</div>
+					
+					<div class="col-sm-2 mb-3">
+						<b>NIHR</b><br/>
+						<p th:text="*{funderNIHR} ?: '-'"></p>
+					
+					</div>
+					
+					<div class="col-sm-2 mb-3">
+						<b>ERC</b><br/>	
+						<p th:text="*{funderERC} ?: '-'"></p>
+				
+					</div>			
+					</div>
+		  		</div>	
+				
+				<div class="tab-pane fade" id="nav-scholarcy" role="tabpanel" aria-labelledby="nav-scholarcy-tab" 
+					th:if="${scholarcy != null && isAdmin == null}">
+		                    
+		          <div th:replace="fragments/scholarcy :: scholarcycontent(${scholarcy})"></div>		                    
+				</div>
+					 
+				 <div class="tab-pane fade" id="nav-scholarcy" role="tabpanel" aria-labelledby="nav-scholarcy-tab" 
+				 	th:if="${scholarcy == null && isAdmin == null}">
+	                  		                  
+	                   <span th:text="No article insights available for this record"></span>
+				  </div>
+				
+			</div>
+		</div>
+	</div>	
+	         
+</div>
+
+<footer class="footer" th:include="fragments/footer :: footer"></footer>
+</body>
+</html>
