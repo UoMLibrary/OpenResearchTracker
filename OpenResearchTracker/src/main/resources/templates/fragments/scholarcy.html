@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+
+</head>
+
+<body>
+</body>
+
+
+<div th:fragment="scholarcycontent(scholarcy)">
+	<div class="accordion" th:object="${scholarcy}">
+	
+	
+    	<div class="accordion-item">
+           <h5 class="accordion-header" id="SummaryHeading">
+              <button class="accordion-button collapsed" data-bs-toggle="collapse" 
+              data-bs-target="#SummaryBody" 
+              aria-expanded="true" aria-controls="SummaryBody">
+             			Summary
+              </button>
+           </h5>
+          <div id="SummaryBody" class="accordion-collapse collapse"
+             aria-labelledby="SummaryHeading">
+             <div class="accordion-body">
+				 <ul th:if="*{summary != null && summary.size > 0}">
+					<li th:each="s : *{summary}">
+					<p th:text="${s}"></p>
+					</li>
+				</ul> 	
+				
+				<p th:if="*{summary == null || summary.size == 0}">No data available for 'Summary'</p>
+					 
+             </div>
+          </div>
+       	</div>
+       	     	
+       	
+       	<div class="accordion-item">
+           <h5 class="accordion-header" id="KeyStatementsHeading">
+              <button class="accordion-button collapsed" data-bs-toggle="collapse" 
+              data-bs-target="#KeyStatementsBody" 
+              aria-expanded="true" aria-controls="KeyStatementsBody">
+             			Key Statements
+              </button>
+           </h5>
+          <div id="KeyStatementsBody" class="accordion-collapse collapse"
+             aria-labelledby="KeyStatementsHeading">
+             <div class="accordion-body">
+				 <ul th:if="*{key_statements != null && key_statements.size > 0}">
+					<li th:each="s : *{key_statements}">
+					<p th:text="${s}"></p>
+					</li>
+				</ul> 		
+				
+				<p th:if="*{key_statements == null || key_statements.size == 0}">No data available for 'Key Statements'</p>		 
+				 
+             </div>
+          </div>
+       	</div>
+        
+        
+        <div class="accordion-item">
+           <h5 class="accordion-header" id="MethodsHeading">
+              <button class="accordion-button collapsed" data-bs-toggle="collapse" 
+              data-bs-target="#MethodsBody" 
+              aria-expanded="true" aria-controls="MethodsBody">
+             			Methods
+              </button>
+           </h5>
+          <div id="MethodsBody" class="accordion-collapse collapse"
+             aria-labelledby="MethodsHeading">
+             <div class="accordion-body">
+				 <ul th:if="*{methods != null && methods.size > 0}">
+					<li th:each="s : *{methods}">
+					<p th:text="${s}"></p>
+					</li>
+				</ul> 
+				
+				<p th:if="*{methods == null || methods.size == 0}">No data available for 'Methods'</p>	
+					 
+             </div>
+          </div>
+       	</div>
+       	
+       	
+       	<div class="accordion-item">
+           <h5 class="accordion-header" id="FundingStatementHeading">
+              <button class="accordion-button collapsed" data-bs-toggle="collapse" 
+              data-bs-target="#FundingStatementBody" 
+              aria-expanded="true" aria-controls="FundingStatementBody">
+             			Funding Statement
+              </button>
+           </h5>
+          <div id="FundingStatementBody" class="accordion-collapse collapse"
+             aria-labelledby="FundingStatementHeading">
+             <div class="accordion-body">
+				 <ul th:if="*{funding_statement != null && funding_statement.size > 0}">
+					<li th:each="s : *{funding_statement}">
+					<p th:text="${s}"></p>
+					</li>
+				</ul> 
+				
+				<p th:if="*{funding_statement == null || funding_statement.size == 0}">No data available for 'Funding Statement'</p>	
+					 
+             </div>
+          </div>
+       	</div>
+       	
+       	
+       	<div class="accordion-item">
+           <h5 class="accordion-header" id="DataAvailabilityHeading">
+              <button class="accordion-button collapsed" data-bs-toggle="collapse" 
+              data-bs-target="#DataAvailabilityBody" 
+              aria-expanded="true" aria-controls="DataAvailabilityBody">
+             			Data Availability
+              </button>
+           </h5>
+          <div id="DataAvailabilityBody" class="accordion-collapse collapse"
+             aria-labelledby="DataAvailabilityHeading">
+             <div class="accordion-body">
+				 <ul th:if="*{data_availability != null && data_availability.size > 0}">
+					<li th:each="s : *{data_availability}">
+					<p th:text="${s}"></p>
+					</li>
+				</ul> 
+				
+				<p th:if="*{data_availability == null || data_availability.size == 0}">No data available for 'Data Availability'</p>	
+					 
+             </div>
+          </div>
+       	</div>
+       	
+       	
+       	<div class="accordion-item">
+           <h5 class="accordion-header" id="RegistrationsHeading">
+              <button class="accordion-button collapsed" data-bs-toggle="collapse" 
+              data-bs-target="#RegistrationsBody" 
+              aria-expanded="true" aria-controls="RegistrationsBody">
+             			Registrations
+              </button>
+           </h5>
+          <div id="RegistrationsBody" class="accordion-collapse collapse"
+             aria-labelledby="RegistrationsHeading">
+             <div class="accordion-body">
+				 <ul th:if="*{registrations != null && registrations.size > 0}">
+					<li th:each="s : *{registrations}">
+					<p th:text="${s}"></p>
+					</li>
+				</ul> 
+				
+				<p th:if="*{registrations == null || registrations.size == 0}">No data available for 'Registrations'</p>	
+					 
+             </div>
+          </div>
+       	</div>
+            
+         
+	</div>
+</div>
+
+
+</html>

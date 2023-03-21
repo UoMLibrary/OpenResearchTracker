@@ -1,0 +1,172 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	/* Margin bottom by footer height */
+	margin-bottom: 250px;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	margin-top:-30px;
+	/* Set the fixed height of the footer here */
+	height: 220px;
+	background-color: #1d1d1d;
+    clear: both;
+}
+
+.row_footer {
+    position: relative;
+    width: 90%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+}
+.tripleVertPadding {
+    padding: 3em 0;
+}
+.eightcol,
+.fourcol {
+    margin-right: 3.8%;
+    float: left;
+    overflow: hidden;
+    position: relative;
+}
+.fourcol {
+    width: 100%;
+}
+.eightcol {
+    width: 100%;
+}
+.twelvecol {
+    width: 100%;
+    float: left;
+    position: relative;
+}
+.last {
+    margin-right: 0 !important;
+}
+.eightcol {
+    margin-right: 3.8%;
+    float: left;
+    overflow: hidden;
+    position: relative;
+}
+.eightcol img {
+    width: 213%;
+}
+.twelvecol {
+    width: 100%;
+    float: left;
+    position: relative;
+}
+
+.footer h2 {
+    color: #fff;
+    font-family: "Open Sans";
+    font-weight: 100;
+    font-size: large;
+}
+.footer .fourcol.last {
+    margin: 2em 0 0;
+}
+.footer .tripleVertPadding {
+    padding-bottom: 1em;
+}
+.footer li a {
+    font-size: 1em !important;
+    color: #aaa;
+}
+.footer-socialIcons li {
+    padding: 0 !important;
+}
+.footer-socialIcons li a img {
+    padding-right: 10px;
+    width: auto !important;
+    vertical-align: inherit;
+}
+.footerLogos {
+    float: left;
+    width: 280px;
+}
+.footerLogos img {
+    display: inline;
+    margin: 0 20px 10px 0;
+    width: auto !important;
+}
+.footerLogos p {
+    color: #fff;
+    line-height: 1.3em;
+    font-size: 1.1em;
+    font-family: "Open Sans";
+}
+.inlineList {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+}
+.inlineList li {
+    display: inline-block;
+    margin: 0;
+    padding: 5px;
+    font-size: 14px;
+    line-height: 2em;
+    color: #aaa;
+    font-family: "Open Sans";
+}
+.inlineList li a {
+    display: inline-block;
+    font-family: "Open Sans";
+}
+@media only screen and (min-width: 600px) {
+    .fourcol {
+        width: 30.8%;
+    }
+    .eightcol {
+        width: 65.4%;
+    }
+    .footerLogos {
+        float: left;
+    }
+    .footerLogos img {
+        display: inline;
+        margin: 0 20px 10px 0;
+        width: auto !important;
+    }
+    .footerLogos p {
+        color: #fff;
+        line-height: 1.3em;
+        font-size: 1.1em;
+        clear: both;
+        font-family: "Open Sans";
+    }
+    hr {
+        width: 100%;
+    }
+    .footer .fourcol.last {
+        margin: 0;
+        padding: 0;
+        border-top: 0;
+        width: 30.8%;
+    }
+}
+@media only screen and (min-width: 960px) {
+    .footer .eightcol {
+        width: 65.4% !important;
+    }
+    .footer .fourcol.last {
+        width: 30.8% !important;
+        margin: 0;
+        padding: 0;
+        border-top: 0;
+    }
+}
